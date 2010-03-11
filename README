@@ -1,0 +1,53 @@
+Author: Giovanni Manuel Toppi
+Kohana v3.0 module
+This module loads via ajax views inside your pages.
+
+0 - Enable the module in your bootstrap.php
+
+1 - Include jquery lib and jquery.ajaxcontent.js inside your page (the template view for example)
+
+2 - Inside your page make an empty div, for example
+<div id="widgets"></div>
+
+3 - then in your application/views/widgets folder create some views.
+
+4 - Set up your config file 
+
+return array(
+	'widgets' => array(
+		'default' => array(
+						'widgets/primo',
+					),
+		'other' => array(
+						'widgets/secondo',
+					),
+	)
+);
+
+(assuming that you've created primo.php and secondo.php)
+
+where 'default' and 'other' are the categories...you can change it but maybe it's a good thing to leave the 'default' category.
+
+5 - Then call with javascript
+
+$(function(){
+	$("#widgets").ajaxcontent({
+		baseURL: 'http://localhost/',
+		category: 'default',
+	});
+});
+
+now you will see the view 'primo' inside '#widgets' div.
+And if you call
+
+$(function(){
+	$("#widgets").ajaxcontent({
+		baseURL: 'http://localhost/',
+		category: 'other',
+	});
+});
+
+you will see the view 'secondo'.
+
+
+
